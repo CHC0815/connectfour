@@ -1,6 +1,7 @@
 import multiprocessing
 
 import connectfour.utils as utils
+from agents.onestep import bot as onestep_bot
 from agents.random_bot import bot as random_bot
 from connectfour.Agent import Agent
 from connectfour.ConnectFour import ConnectFour

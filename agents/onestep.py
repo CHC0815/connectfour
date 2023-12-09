@@ -3,7 +3,7 @@ import numpy as np
 import connectfour.utils as utils
 
 
-def my_agent(obs, config):
+def bot(obs, config):
     # Your code here: Amend the agent!
     import random
 
