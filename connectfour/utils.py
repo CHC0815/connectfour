@@ -46,6 +46,8 @@ def get_valid_moves(obs: Observation, config: ConnectFourConfig) -> list[int]:
         list: A list of valid moves
     """
     valid_moves = [col for col in range(config.columns) if obs.board[col] == 0]
+    if len(valid_moves) == 0:
+        return [-1]  # draw
     return valid_moves
 
 
