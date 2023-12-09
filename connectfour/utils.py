@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def opponent_mark(obs):
     """retuns the opponent's mark
 
