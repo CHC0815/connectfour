@@ -8,10 +8,11 @@ class PygameDisplay:
         self.clock = pygame.time.Clock()
         self.running = True
 
-    def render(self, board):
+    def render(self, board, config):
+        board = board.reshape(config.rows, config.columns)
         self.screen.fill((0, 0, 0))
-        for row in range(6):
-            for col in range(7):
+        for row in range(config.rows):
+            for col in range(config.cols):
                 if board[row][col] == 1:
                     pygame.draw.circle(
                         self.screen, (255, 0, 0), (col * 100 + 50, row * 100 + 50), 40

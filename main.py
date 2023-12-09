@@ -18,7 +18,7 @@ def main():
             print(f"Player {player} won!")
             break
 
-        display.render(env.obs.reshape(env.config.rows, env.config.cols))
+        display.render(env.obs, env.config)
         display.clock.tick(1)
 
 
