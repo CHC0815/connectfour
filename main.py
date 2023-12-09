@@ -10,7 +10,9 @@ def sim_game(agent1: Agent, agent2: Agent, render: bool = False) -> int:
     if render:
         display = PygameDisplay()
     while True:
-        valid_move, win, player = env.step()
+        valid_move, win, draw, player = env.step()
+        if draw:
+            return 0
         if not valid_move:
             return utils.opponent_mark(env.obs)
 
@@ -33,6 +35,7 @@ def main(n_games: int, render=False):
     print(
         f"Player 2 won {n_games - player_1_wins} games ({(n_games - player_1_wins) / n_games * 100:.2f}%)"
     )
+    print(f"Draws: {who.count(0)}")
 
 
 if __name__ == "__main__":

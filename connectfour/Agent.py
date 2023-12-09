@@ -1,5 +1,6 @@
 from typing import Callable
 
-import connectfour.ConnectFour as cf
+from connectfour.ConnectFourConfig import ConnectFourConfig
+from connectfour.Observation import Observation
 
-Agent = Callable[[cf.Observation, cf.ConnectFourConfig, int], int]
+Agent = Callable[[Observation, ConnectFourConfig, int], int]
