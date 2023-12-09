@@ -63,7 +63,7 @@ def bot(obs, config):
         grid = np.asarray(obs.board).reshape(config.rows, config.columns)
         # Use the heuristic to assign a score to each possible board in the next turn
         scores = dict(
-            zip(valid_moves, [score_move(grid, col, obs.mark, config) for col in valid_moves])
+            zip(valid_moves, [score_move(grid, col, obs.player, config) for col in valid_moves])
         )
         # Get a list of columns (moves) that maximize the heuristic
         max_cols = [key for key in scores.keys() if scores[key] == max(scores.values())]
