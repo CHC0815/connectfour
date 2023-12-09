@@ -1,6 +1,6 @@
 import random
 
-from connect_four.utils import get_valid_moves  # type:ignore
+from connectfour.utils import get_valid_moves  # type:ignore
 
 
 def bot(obs, config, piece):

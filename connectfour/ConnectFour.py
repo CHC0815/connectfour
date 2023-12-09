@@ -9,8 +9,8 @@ class ConnectFour:
     def __init__(self, player1, player2):
         self.obs = np.zeros(42, dtype=int)
         self.config = {
-            "rows": 6,
-            "cols": 7,
+            "rows": 7,
+            "cols": 6,
         }
         self.player = 1
         self.player1 = player1
