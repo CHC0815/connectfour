@@ -1,3 +1,5 @@
+import multiprocessing
+
 import connectfour.utils as utils
 from agents.random_bot import bot as random_bot
 from connectfour.Agent import Agent
@@ -5,10 +7,10 @@ from connectfour.ConnectFour import ConnectFour
 from connectfour.display import PygameDisplay
 
 
-def sim_game(agent1: Agent, agent2: Agent, render: bool = False) -> int:
+def sim_game(param: tuple[Agent, Agent, bool, int]) -> int:
+    agent1, agent2, render, game_id = param
+    print(f"Starting Game: {game_id}")
     env = ConnectFour(agent1, agent2)
-    if render:
-        display = PygameDisplay()
     while True:
         valid_move, win, draw, player = env.step()
         if draw:
@@ -18,17 +20,18 @@ def sim_game(agent1: Agent, agent2: Agent, render: bool = False) -> int:
 
         if win:
             return player
-        if render:
-            display.render(env.obs, env.config)  # type: ignore
-            display.clock.tick(10)  # type:ignore
 
 
 def main(n_games: int, render=False):
     agent1 = random_bot
     agent2 = random_bot
+    pool = multiprocessing.Pool()
     who = []
-    for _ in range(n_games):
-        who.append(sim_game(agent1, agent2, render))
+
+    for result in pool.imap(sim_game, [(agent1, agent2, render, i) for i in range(n_games)]):
+        who.append(result)
+
+    pool.close()
 
     player_1_wins = who.count(1)
     print(f"Player 1 won {player_1_wins} games ({player_1_wins / n_games * 100:.2f}%)")
@@ -39,4 +42,4 @@ def main(n_games: int, render=False):
 
 
 if __name__ == "__main__":
-    main(100)
+    main(1000)
