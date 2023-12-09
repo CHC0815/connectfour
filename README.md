@@ -54,7 +54,6 @@ The project aimes to provide a common ground to develop and test connect four ag
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Installation
@@ -78,9 +77,11 @@ To get a local copy up and running follow these simple example steps.
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To run the example type:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```sh
+  python3 main.py
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,7 +101,7 @@ See the [open issues](https://github.com/chc0815/connectfour/issues) for a full 
 
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - conrad.carl@cophee.team
+Conrad Carl - conrad.carl@cophee.team
 
 Project Link: [https://github.com/chc0815/connectfour](https://github.com/chc0815/connectfour)
 
