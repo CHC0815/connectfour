@@ -7,12 +7,6 @@ def my_agent(obs, config):
     # Your code here: Amend the agent!
     import random
 
-    A = 1000000
-    B = 100
-    C = 10
-    D = -100
-    E = -1000
-
     def get_heuristic(grid, mark, config):
         num_threes = count_windows(grid, 3, mark, config)
         num_fours = count_windows(grid, 4, mark, config)
