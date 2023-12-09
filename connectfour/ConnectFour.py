@@ -2,7 +2,7 @@ from typing import Tuple
 
 import numpy as np
 
-from connectfour.utils import check_win, drop_piece, get_valid_moves
+import connectfour.utils as utils
 
 
 class ConnectFourConfig:
@@ -22,9 +22,9 @@ class Observation:
         self.player = 1
 
     def step(self, col, config) -> bool:
-        if col not in get_valid_moves(self, config):
+        if col not in utils.get_valid_moves(self, config):
             return False
-        self.board = drop_piece(
+        self.board = utils.drop_piece(
             self.board.reshape(config.rows, config.columns), col, self.player, config
         ).flatten()
         self.player = 1 if self.player == 2 else 2
@@ -48,4 +48,4 @@ class ConnectFour:
 
         is_valid = self.obs.step(col, self.config)
 
-        return is_valid, check_win(self.obs, self.config, self.obs.player), self.obs.player
+        return is_valid, utils.check_win(self.obs, self.config, self.obs.player), self.obs.player

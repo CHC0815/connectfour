@@ -1,6 +1,6 @@
 from agents.random_bot import bot as random_bot
-from connectfour.ConnectFour import ConnectFour  # type:ignore
-from connectfour.display import PygameDisplay  # type:ignore
+from connectfour.ConnectFour import ConnectFour
+from connectfour.display import PygameDisplay
 
 
 def main():
@@ -19,7 +19,10 @@ def main():
             break
 
         display.render(env.obs, env.config)
-        display.clock.tick(1)
+        display.clock.tick(10)
+
+    while True:
+        display.clock.tick(10)
 
 
 if __name__ == "__main__":
