@@ -19,12 +19,11 @@ class ConnectFour:
         self.obs.reset()
 
     def step(self) -> Tuple[bool, bool, bool, int]:
+        # check if last game was a draw
+        if utils.get_valid_moves(self.obs, self.config) == [-1]:
+            return False, False, True, 0
         bot = self.player1 if self.obs.player == 1 else self.player2
         col = bot(self.obs, self.config)
-
-        # if is a draw
-        if col == [-1] and utils.get_valid_moves(self.obs, self.config) == [-1]:
-            return False, False, True, 0
 
         is_valid = self.obs.step(col, self.config)
 
