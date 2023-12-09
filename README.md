@@ -63,7 +63,11 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/chc0815/connectfour.git
    ```
-2. Install pip packages
+2. Change directory
+   ```sh
+   cd connectfour
+   ```
+3. Install pip packages
    ```sh
    pip3 install -r requirements.txt
    ```
