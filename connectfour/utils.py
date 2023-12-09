@@ -1,5 +1,7 @@
 import numpy as np
 
+from connectfour.ConnectFour import ConnectFourConfig, Observation
+
 
 def opponent_mark(obs):
     """retuns the opponent's mark
@@ -13,7 +15,7 @@ def opponent_mark(obs):
     return 2 if obs.mark == 1 else 1
 
 
-def drop_piece(grid, col, piece, config):
+def drop_piece(grid: np.ndarray, col: int, piece: int, config: ConnectFourConfig):
     """Drops a piece into a column in the grid
 
     Args:
@@ -25,15 +27,15 @@ def drop_piece(grid, col, piece, config):
     Returns:
         grid: The game board with the piece dropped
     """
-    next_grid = grid.copy()
+    grid = grid.copy()
     for row in range(config.rows - 1, -1, -1):
-        if next_grid[row][col] == 0:
+        if grid[row][col] == 0:
             break
-    next_grid[row][col] = piece
-    return next_grid
+    grid[row][col] = piece  # type:ignore
+    return grid
 
 
-def get_valid_moves(obs, config):
+def get_valid_moves(obs: Observation, config: ConnectFourConfig):
     """Gets the valid moves for the current player
 
     Args:
@@ -47,7 +49,7 @@ def get_valid_moves(obs, config):
     return valid_moves
 
 
-def check_win(obs, config, piece):
+def check_win(obs: Observation, config: ConnectFourConfig, piece: int):
     """Checks if the current player has won
 
     Args:
@@ -63,28 +65,26 @@ def check_win(obs, config, piece):
     # horizontal
     for row in range(config.rows):
         for col in range(config.columns - (config.inarow - 1)):
-            window = list(next_grid[row, col : col + config.inarow])
+            window = list(grid[row, col : col + config.inarow])
             if window.count(piece) == config.inarow:
                 return True
     # vertical
     for row in range(config.rows - (config.inarow - 1)):
         for col in range(config.columns):
-            window = list(next_grid[row : row + config.inarow, col])
+            window = list(grid[row : row + config.inarow, col])
             if window.count(piece) == config.inarow:
                 return True
     # positive diagonal
     for row in range(config.rows - (config.inarow - 1)):
         for col in range(config.columns - (config.inarow - 1)):
-            window = list(
-                next_grid[range(row, row + config.inarow), range(col, col + config.inarow)]
-            )
+            window = list(grid[range(row, row + config.inarow), range(col, col + config.inarow)])
             if window.count(piece) == config.inarow:
                 return True
     # negative diagonal
     for row in range(config.inarow - 1, config.rows):
         for col in range(config.columns - (config.inarow - 1)):
             window = list(
-                next_grid[range(row, row - config.inarow, -1), range(col, col + config.inarow)]
+                grid[range(row, row - config.inarow, -1), range(col, col + config.inarow)]
             )
             if window.count(piece) == config.inarow:
                 return True
