@@ -25,7 +25,7 @@ def sim_game(param: tuple[Agent, Agent, bool, int]) -> int:
 
 def main(n_games: int, render=False):
     agent1 = random_bot
-    agent2 = random_bot
+    agent2 = onestep_bot
     pool = multiprocessing.Pool()
     who = []
 

@@ -20,7 +20,7 @@ class ConnectFour:
 
     def step(self) -> Tuple[bool, bool, bool, int]:
         bot = self.player1 if self.obs.player == 1 else self.player2
-        col = bot(self.obs, self.config, self.obs.player)
+        col = bot(self.obs, self.config)
 
         # if is a draw
         if col == [-1] and utils.get_valid_moves(self.obs, self.config) == [-1]:
