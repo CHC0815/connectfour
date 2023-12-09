@@ -3,6 +3,7 @@ from typing import Tuple
 import numpy as np
 
 import connectfour.utils as utils
+from connectfour.Agent import Agent
 
 
 class ConnectFourConfig:
@@ -32,7 +33,7 @@ class Observation:
 
 
 class ConnectFour:
-    def __init__(self, player1, player2):
+    def __init__(self, player1: Agent, player2: Agent):
         self.obs = Observation()
         self.config = ConnectFourConfig(6, 7)
         self.player1 = player1
@@ -44,7 +45,6 @@ class ConnectFour:
     def step(self) -> Tuple[bool, bool, int]:
         bot = self.player1 if self.obs.player == 1 else self.player2
         col = bot(self.obs, self.config, self.obs.player)
-        print(f"Player {self.obs.player} chose column {col}")
 
         is_valid = self.obs.step(col, self.config)
 
