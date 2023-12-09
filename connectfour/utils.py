@@ -3,7 +3,7 @@ import numpy as np
 from connectfour.ConnectFour import ConnectFourConfig, Observation
 
 
-def opponent_mark(obs):
+def opponent_mark(obs: Observation) -> int:
     """retuns the opponent's mark
 
     Args:
@@ -12,10 +12,10 @@ def opponent_mark(obs):
     Returns:
         int: 1 or 2
     """
-    return 2 if obs.mark == 1 else 1
+    return 2 if obs.player == 1 else 1
 
 
-def drop_piece(grid: np.ndarray, col: int, piece: int, config: ConnectFourConfig):
+def drop_piece(grid: np.ndarray, col: int, piece: int, config: ConnectFourConfig) -> np.ndarray:
     """Drops a piece into a column in the grid
 
     Args:
@@ -35,7 +35,7 @@ def drop_piece(grid: np.ndarray, col: int, piece: int, config: ConnectFourConfig
     return grid
 
 
-def get_valid_moves(obs: Observation, config: ConnectFourConfig):
+def get_valid_moves(obs: Observation, config: ConnectFourConfig) -> list[int]:
     """Gets the valid moves for the current player
 
     Args:
@@ -49,7 +49,7 @@ def get_valid_moves(obs: Observation, config: ConnectFourConfig):
     return valid_moves
 
 
-def check_win(obs: Observation, config: ConnectFourConfig, piece: int):
+def check_win(obs: Observation, config: ConnectFourConfig, piece: int) -> bool:
     """Checks if the current player has won
 
     Args:
