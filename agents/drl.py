@@ -95,4 +95,4 @@ def train_bot():
     # Train agent
     model.learn(total_timesteps=50000)
 
-    model.save("ppo_connectfour")
+    model.save("models/ppo_connectfour")
