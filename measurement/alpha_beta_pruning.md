@@ -30,3 +30,5 @@ sys	0m0,184s
  ╭─conrad@Bart in repo: connectfour on  main [!] via  v3.12.0 via  connectfour took 34s
  ╰─λ
 ```
+
+<a href="https://github.com/chc0815/connectfour/blob/main/README.md">Back to README</a>
