@@ -31,10 +31,12 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#recommendation">Recommendation</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#measurements"></a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ol>
 </details>
@@ -113,6 +115,10 @@ To set the number of games add ```-n / --n-games```
 You can specify an agent with ```-a1 / --agent1``` and ```-a2 / --agent2```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Measurements
+
+[Improvement of alpha beta pruning](measurement/alpha_beta_pruning.md)
 
 <!-- ROADMAP -->
 
