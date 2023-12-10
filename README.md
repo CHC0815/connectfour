@@ -55,6 +55,22 @@ The project aimes to provide a common ground to develop and test connect four ag
 
 To get a local copy up and running follow these simple example steps.
 
+### Recommendation
+
+1. Install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/)
+
+[Optional]. Install and use [mamba](https://github.com/mamba-org/mamba) instead of conda
+
+2. Create a new environment
+```sh
+  conda create -n connectfour
+```
+
+3. Activate the new environment
+```sh
+  conda activate connectfour
+```
+
 ### Installation
 
 1. Clone the repo
