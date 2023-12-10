@@ -83,6 +83,10 @@ To run the example type:
   python3 main.py
 ```
 
+This should look like:
+
+[product-screenshot]
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -121,4 +125,4 @@ Project Link: [https://github.com/chc0815/connectfour](https://github.com/chc081
 [license-shield]: https://img.shields.io/github/license/chc0815/connectfour.svg?style=for-the-badge
 [license-url]: https://github.com/chc0815/connectfour/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/sample_run.png
