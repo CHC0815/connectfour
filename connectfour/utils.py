@@ -1,9 +1,11 @@
 import numpy as np
 
+import agents.negamax as negamax
 import agents.nstep as nstep
 import agents.onestep as onestep
 import agents.random_bot as random
-from connectfour.ConnectFour import ConnectFourConfig, Observation
+from connectfour.ConnectFourConfig import ConnectFourConfig
+from connectfour.Observation import Observation
 
 
 def opponent_mark(obs: Observation) -> int:
@@ -54,19 +56,7 @@ def get_valid_moves(obs: Observation, config: ConnectFourConfig) -> list[int]:
     return valid_moves
 
 
-def check_win(obs: Observation, config: ConnectFourConfig, piece: int) -> bool:
-    """Checks if the current player has won
-
-    Args:
-        obs: observation object
-        config: The game configuration
-        piece: The player's piece
-
-    Returns:
-        bool: True if the player has won
-    """
-    # Convert the board to a 2D grid
-    grid = np.asarray(obs.board).reshape(config.rows, config.columns)
+def check_win_board(grid, config: ConnectFourConfig, piece: int) -> bool:
     # horizontal
     for row in range(config.rows):
         for col in range(config.columns - (config.inarow - 1)):
@@ -96,6 +86,22 @@ def check_win(obs: Observation, config: ConnectFourConfig, piece: int) -> bool:
     return False
 
 
+def check_win(obs: Observation, config: ConnectFourConfig, piece: int) -> bool:
+    """Checks if the current player has won
+
+    Args:
+        obs: observation object
+        config: The game configuration
+        piece: The player's piece
+
+    Returns:
+        bool: True if the player has won
+    """
+    # Convert the board to a 2D grid
+    grid = np.asarray(obs.board).reshape(config.rows, config.columns)
+    return check_win_board(grid, config, piece)
+
+
 def get_agent(name):
     if name == "random":
         return random.bot
@@ -103,6 +109,8 @@ def get_agent(name):
         return onestep.bot
     elif name == "nstep":
         return nstep.bot
+    elif name == "negamax":
+        return negamax.bot
     else:
         return load_agent(name)
 
