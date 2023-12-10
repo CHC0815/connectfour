@@ -5,7 +5,7 @@ from connectfour.Simulation import Simulation
 
 
 def main():
-    built_in_agents = ["random", "onestep", "nstep", "negamax"]
+    built_in_agents = ["random", "onestep", "nstep", "negamax", "deepbot"]
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--n-games", type=int, default=10, help="Number of games to play")
