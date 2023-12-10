@@ -1,5 +1,7 @@
 import multiprocessing
 
+import tqdm  # type: ignore
+
 import connectfour.Agent as Agent
 import connectfour.utils as utils
 from connectfour.ConnectFour import ConnectFour
@@ -27,8 +29,11 @@ class Simulation:
     def run(self):
         pool = multiprocessing.Pool()
         who = []
-        for result in pool.imap(
-            self.sim_game, [(self.agent1, self.agent2, False, i) for i in range(self.n_runs)]
+        for result in tqdm.tqdm(
+            pool.imap(
+                self.sim_game, [(self.agent1, self.agent2, False, i) for i in range(self.n_runs)]
+            ),
+            total=self.n_runs,
         ):
             who.append(result)
         pool.close()
@@ -40,7 +45,6 @@ class Simulation:
     @staticmethod
     def sim_game(param: tuple[Agent.Agent, Agent.Agent, bool, int]) -> int:
         agent1, agent2, render, game_id = param
-        print(f"Starting Game: {game_id}")
         env = ConnectFour(agent1, agent2)
         while True:
             valid_move, win, draw, player = env.step()

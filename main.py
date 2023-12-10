@@ -7,7 +7,7 @@ from connectfour.Simulation import Simulation
 
 def main(n_games: int):
     agent1 = random_bot
-    agent2 = nstep_bot
+    agent2 = onestep_bot
 
     sim = Simulation(agent1, agent2, n_games)
     sim.run()
@@ -15,4 +15,4 @@ def main(n_games: int):
 
 
 if __name__ == "__main__":
-    main(240)
+    main(2400)
