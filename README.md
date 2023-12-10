@@ -1,7 +1,5 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
@@ -85,7 +83,7 @@ To run the example type:
 
 This should look like:
 
-![product-screenshot]([product-screenshot])
+![product-screenshot](product-screenshot)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
