@@ -28,11 +28,16 @@ class PygameDisplay:
 
 
 class ConsoleFrame:
-    def __init__(self, board):
+    def __init__(self, board, config: ConnectFourConfig):
         self.frame = ""
-        for i in range(6):
-            for j in range(7):
-                mark = "o" if self.board[i * 7 + j] == 1 else "x"
+        for i in range(config.rows):
+            for j in range(config.columns):
+                mark = " "
+                val = board[i * config.columns + j]
+                if val == 1:
+                    mark = "X"
+                elif val == 2:
+                    mark = "O"
                 self.frame += mark + " "
             self.frame += "\n"
 
@@ -48,7 +53,7 @@ class ConsoleDisplay:
         self.steps: list[ConsoleFrame] = []
 
     def render(self, obs: Observation, config: ConnectFourConfig):
-        self.steps.append(obs.board)
+        self.steps.append(ConsoleFrame(obs.board, config))
 
     def __str__(self) -> str:
         s = ""
