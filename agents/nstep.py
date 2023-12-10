@@ -6,6 +6,8 @@ def bot(obs, config):
 
     import connectfour.utils as utils
 
+    ABP = True
+
     def get_heuristic(grid, mark, config):
         num_threes = count_windows(grid, 3, mark, config)
         num_fours = count_windows(grid, 4, mark, config)
@@ -62,8 +64,9 @@ def bot(obs, config):
     # Uses minimax to calculate value of dropping piece in selected column
     def score_move(grid, col, mark, config, nsteps):
         next_grid = drop_piece(grid, col, mark, config)
-        score = minimax(next_grid, nsteps - 1, False, mark, config)
-        return score
+        if ABP:
+            return minimax_abp(next_grid, nsteps - 1, False, mark, config, -np.Inf, np.Inf)
+        return minimax(next_grid, nsteps - 1, False, mark, config)
 
     # Helper function for minimax: checks if agent or opponent has four in a row in the window
     def is_terminal_window(window, config):
@@ -123,6 +126,34 @@ def bot(obs, config):
                 child = drop_piece(node, col, mark % 2 + 1, config)
                 value = min(value, minimax(child, depth - 1, True, mark, config))
             return value
+
+    # Minimax implementation with alpha-beta pruning
+    def minimax_abp(node, depth, maximizingPlayer, mark, config, alpha, beta):
+        is_terminal = is_terminal_node(node, config)
+        valid_moves = [c for c in range(config.columns) if node[0][c] == 0]
+        if depth == 0 or is_terminal:
+            return get_heuristic(node, mark, config)
+
+        if maximizingPlayer:
+            best = -np.Inf
+            for col in valid_moves:
+                child = drop_piece(node, col, mark, config)
+                value = minimax_abp(child, depth - 1, False, mark, config, alpha, beta)
+                best = max(best, value)
+                alpha = max(alpha, best)
+                if beta <= alpha:
+                    break
+            return best
+        else:
+            best = np.Inf
+            for col in valid_moves:
+                child = drop_piece(node, col, mark % 2 + 1, config)
+                value = minimax_abp(child, depth - 1, True, mark, config, alpha, beta)
+                best = min(best, value)
+                beta = min(beta, best)
+                if beta <= alpha:
+                    break
+            return best
 
     # How deep to make the game tree: higher values take longer to run!
     N_STEPS = 3
