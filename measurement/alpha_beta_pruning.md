@@ -1,5 +1,7 @@
 # Alpha Beta Pruning
+
 In the first run the nstep bot used the normal [minimax](https://en.wikipedia.org/wiki/Minimax) implementation.
+
 In the second run it used the [alpha-beta-pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) optimization.
 
 ```sh

@@ -36,7 +36,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#measurements"></a></li>
+    <li><a href="#measurements">Measurements</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ol>
 </details>
