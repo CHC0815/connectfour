@@ -47,7 +47,9 @@ class Simulation:
         agent1, agent2, render, game_id = param
         env = ConnectFour(agent1, agent2)
         while True:
-            valid_move, win, draw, player = env.step()
+            player = env.obs.player
+            bot = agent1 if player == 1 else agent2
+            valid_move, win, draw, player = env.step(bot(env.obs, env.config))
             if draw:
                 return 0
             if not valid_move:

@@ -160,7 +160,9 @@ def bot(obs, config):
 
     def agent(obs, config):
         # Get list of valid moves
-        valid_moves = [c for c in range(config.columns) if obs.board[c] == 0]
+        valid_moves = utils.get_valid_moves(obs, config)
+        if valid_moves == [-1]:
+            return -1
         # Convert the board to a 2D grid
         grid = np.asarray(obs.board).reshape(config.rows, config.columns)
         # Use the heuristic to assign a score to each possible board in the next step

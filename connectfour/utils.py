@@ -1,5 +1,8 @@
 import numpy as np
 
+import agents.nstep as nstep
+import agents.onestep as onestep
+import agents.random_bot as random
 from connectfour.ConnectFour import ConnectFourConfig, Observation
 
 
@@ -91,3 +94,25 @@ def check_win(obs: Observation, config: ConnectFourConfig, piece: int) -> bool:
             if window.count(piece) == config.inarow:
                 return True
     return False
+
+
+def get_agent(name):
+    if name == "random":
+        return random.bot
+    elif name == "onestep":
+        return onestep.bot
+    elif name == "nstep":
+        return nstep.bot
+    else:
+        return load_agent(name)
+
+
+def load_agent(name):
+    import os
+    from importlib.machinery import SourceFileLoader
+
+    if not os.path.isfile(name):
+        raise FileNotFoundError("Agent {} not found".format(name))
+
+    file = SourceFileLoader("agent", name).load_module()
+    return file.bot

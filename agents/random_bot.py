@@ -1,7 +1,7 @@
 import random
 
-from connectfour.utils import get_valid_moves  # type:ignore
+import connectfour.utils as utils
 
 
 def bot(obs, config):
-    return random.choice(get_valid_moves(obs, config))
+    return random.choice(utils.get_valid_moves(obs, config))

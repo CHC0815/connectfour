@@ -1,32 +1,7 @@
 import argparse
 
 import connectfour.utils as utils
-from agents.nstep import bot as nstep_bot
-from agents.onestep import bot as onestep_bot
-from agents.random_bot import bot as random_bot
 from connectfour.Simulation import Simulation
-
-
-def get_agent(name):
-    if name == "random":
-        return random_bot
-    elif name == "onestep":
-        return onestep_bot
-    elif name == "nstep":
-        return nstep_bot
-    else:
-        return load_agent(name)
-
-
-def load_agent(name):
-    import os
-    from importlib.machinery import SourceFileLoader
-
-    if not os.path.isfile(name):
-        raise FileNotFoundError("Agent {} not found".format(name))
-
-    file = SourceFileLoader("agent", name).load_module()
-    return file.bot
 
 
 def main():
@@ -50,10 +25,17 @@ def main():
         help="Agent 2. Built-in agents: {}".format(built_in_agents)
         + ". Custom agents: path to agent file",
     )
-    args = parser.parse_args()
 
-    agent1 = get_agent(args.agent1)
-    agent2 = get_agent(args.agent2)
+    parser.add_argument("--train", help="Train the agent", type=bool, default=False)
+    args = parser.parse_args()
+    if args.train:
+        import agents.drl as drl
+
+        drl.train_bot()
+        return
+
+    agent1 = utils.get_agent(args.agent1)
+    agent2 = utils.get_agent(args.agent2)
 
     sim = Simulation(agent1, agent2, args.n_games)
     sim.run()
