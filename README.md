@@ -57,16 +57,21 @@ To get a local copy up and running follow these simple example steps.
 
 ### Recommendation
 
+Create a virtual environment with miniconda
+
 1. Install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/)
 
-[Optional]. Install and use [mamba](https://github.com/mamba-org/mamba) instead of conda
+2. [Optional]. Install and use [mamba](https://github.com/mamba-org/mamba) instead of conda
+```sh
+  conda install -c conda-forge mamba
+```
 
-2. Create a new environment
+3. Create a new environment
 ```sh
   conda create -n connectfour
 ```
 
-3. Activate the new environment
+4. Activate the new environment
 ```sh
   conda activate connectfour
 ```
