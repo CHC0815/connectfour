@@ -3,7 +3,7 @@ from stable_baselines3 import PPO
 
 import connectfour.utils as utils
 
-model = PPO.load("ppo_connectfour")
+model = PPO.load("models/ppo_connectfour")
 
 
 def bot(obs, config):
