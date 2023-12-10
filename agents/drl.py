@@ -11,7 +11,7 @@ from connectfour.ConnectFour import ConnectFour
 
 class ConnectFourGym(gym.Env):
     def __init__(self, agent2="random"):
-        self.env = ConnectFour(utils.get_agent("random"), utils.get_agent("random"))
+        self.env = ConnectFour(utils.get_agent("random"), utils.get_agent(agent2))
         self.rows = self.env.config.rows
         self.columns = self.env.config.columns
         # Learn about spaces here: http://gym.openai.com/docs/#spaces
@@ -50,9 +50,6 @@ class ConnectFourGym(gym.Env):
         return np.array(self.obs.board).reshape(1, self.rows, self.columns), reward, done, _
 
 
-# Create ConnectFour environment
-env = ConnectFourGym(agent2="random")
-
 import torch as th
 import torch.nn as nn
 from stable_baselines3 import PPO
@@ -83,12 +80,13 @@ class CustomCNN(BaseFeaturesExtractor):
         return self.linear(self.cnn(observations))
 
 
-policy_kwargs = dict(
-    features_extractor_class=CustomCNN,
-)
-
-
 def train_bot():
+    # Create ConnectFour environment
+    env = ConnectFourGym(agent2="onestep")
+
+    policy_kwargs = dict(
+        features_extractor_class=CustomCNN,
+    )
     # Initialize agent
     model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=0)  # type:ignore
 
