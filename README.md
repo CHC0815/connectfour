@@ -85,7 +85,7 @@ To run the example type:
 
 This should look like:
 
-[product-screenshot]
+![product-screenshot]([product-screenshot])
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
