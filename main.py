@@ -1,6 +1,7 @@
 import multiprocessing
 
 import connectfour.utils as utils
+from agents.nstep import bot as nstep_bot
 from agents.onestep import bot as onestep_bot
 from agents.random_bot import bot as random_bot
 from connectfour.Agent import Agent
@@ -24,8 +25,8 @@ def sim_game(param: tuple[Agent, Agent, bool, int]) -> int:
 
 
 def main(n_games: int, render=False):
-    agent1 = onestep_bot
-    agent2 = onestep_bot
+    agent1 = random_bot
+    agent2 = nstep_bot
     pool = multiprocessing.Pool()
     who = []
 
@@ -43,4 +44,4 @@ def main(n_games: int, render=False):
 
 
 if __name__ == "__main__":
-    main(1000)
+    main(100)
