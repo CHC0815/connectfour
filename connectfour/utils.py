@@ -1,5 +1,6 @@
 import numpy as np
 
+import agents.deepbot as deepbot
 import agents.negamax as negamax
 import agents.nstep as nstep
 import agents.onestep as onestep
@@ -111,6 +112,8 @@ def get_agent(name):
         return nstep.bot
     elif name == "negamax":
         return negamax.bot
+    elif name == "deepbot":
+        return deepbot.bot
     else:
         return load_agent(name)
 
