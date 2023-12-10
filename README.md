@@ -14,6 +14,7 @@
 
   <p align="center">
     An environment that lets compete agents in connect four
+    <br>
     <a href="https://github.com/chc0815/connectfour/issues">Report Bug</a>
     ·
     <a href="https://github.com/chc0815/connectfour/issues">Request Feature</a>
@@ -81,9 +82,14 @@ To run the example type:
   python3 main.py
 ```
 
-This should look like:
+To get help with the command line arguments run:
+```sh
+  python3 main.py --help
+```
 
-![product-screenshot](product-screenshot)
+To set the number of games add ```-n / --n-games```
+
+You can specify an agent with ```-a1 / --agent1``` and ```-a2 / --agent2```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
