@@ -1,5 +1,5 @@
+import { Update } from "@telegraf/types";
 import { Context, Markup, Telegraf, Telegram } from "telegraf";
-import { Update } from "typegram";
 
 const token: string = process.env.BOT_TOKEN as string;
 

@@ -4,3 +4,4 @@ __pycache__/
 models/
 node_modules/
 .env
+dist
