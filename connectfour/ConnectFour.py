@@ -33,6 +33,32 @@ class ConnectFour:
             self.obs.player,
         )
 
+    def interactive_step(self, action: int) -> Tuple[bool, bool, bool, int]:
+        """Interactive step
+
+        Args:
+            action: which column to drop the piece in
+
+        Returns:
+            is_valid: whether the move was valid
+            win: whether the game was won
+            draw: whether the game was a draw
+            player: which player won
+        """
+        # check if last game was a draw
+        if utils.get_valid_moves(self.obs, self.config) == [-1]:
+            return True, False, True, 0
+
+        is_valid = self.obs.step(action, self.config)
+        if not is_valid:
+            return False, True, False, self.obs.player
+
+        return (
+            is_valid,
+            utils.check_win(self.obs, self.config, self.obs.player),
+            self.obs.player,
+        )
+
     def training_step(self, action: int) -> Tuple[Observation, int, bool]:
         # check if last game was a draw
         if utils.get_valid_moves(self.obs, self.config) == [-1]:
